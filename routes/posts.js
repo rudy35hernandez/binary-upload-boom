@@ -9,7 +9,7 @@ router.get("/:id", ensureAuth, postsController.getPost);
 
 router.post("/createPost", upload.single("file"), postsController.createPost);
 
-router.post("/createComment", postsController.createComment)
+router.put("/comments/:id", ensureAuth, postsController.addComment)
 
 router.put("/likePost/:id", postsController.likePost);
 
