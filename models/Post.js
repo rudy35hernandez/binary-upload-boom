@@ -24,9 +24,8 @@ const PostSchema = new mongoose.Schema({
     required: true,
   },
   comments: {
-    type: [CommentSchema],
-    sparse: true,
-    unique: false
+    type: String,
+    required: true
   },
   user: {
     type: mongoose.Schema.Types.ObjectId,
