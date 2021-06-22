@@ -21,7 +21,8 @@ module.exports = {
   getPost: async (req, res) => {
     try {
       const post = await Post.findById(req.params.id);
-      res.render("post.ejs", { post: post, user: req.user });
+      const comment = await Post.findById(req.params.id)
+      res.render("post.ejs", { post: post, user: req.user, comments: comment });
     } catch (err) {
       console.log(err);
     }
@@ -45,6 +46,22 @@ module.exports = {
       console.log(err);
     }
   },
+
+  createComment: async (req, res) => {
+    console.log(req.user)
+    console.log(req.body)
+
+    try{
+      await Post.create({
+
+        comment: req.body.comment
+      })
+      res.redirect("/post")
+    } catch (err) {
+      console.log(err)
+    }
+  },
+
   likePost: async (req, res) => {
     try {
       await Post.findOneAndUpdate(

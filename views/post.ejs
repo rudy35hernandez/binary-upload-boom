@@ -27,6 +27,50 @@
     <div class="col-3 mt-5">
       <p><%= post.caption %></p>
     </div>
+
+
+    <!-- Here is where the comments posted will go-->
+
+    <section>
+      <h2>Comments:</h2>
+      <% if (post.comments.length > 0) { %>
+          <div data-id="<%= post._id %>">
+          <% post.comments.forEach(comment => {%>
+              <div data-id="<%= comment._id %>">
+                <h4><em><%= comment.user.userName %></em></> said: </h4>
+                <p><%= comment.text %></p>
+                        <textarea maxlength="3000"><%= comment.text %></textarea>
+                        <% }) %>
+                </div>
+                <% } %>
+
+    <!-- Try to create a comment section for this! If you can figure it out, you can do it for you 100 hour project-->
+    <% if (user.userName !== 'guest') {%>
+    <div class="mb-3">
+    <form 
+     action="/post/<%= post.id %>/comment/?_method=PUT" method="POST">
+      <textarea 
+      name="comment" 
+      class="form-control" 
+      rows="4" cols="4" 
+      minlength="10" 
+      placeholder="Comment Here" 
+      required></textarea> 
+  <br>
+  <input 
+      class="button primary icon solid"
+      id="submit"
+      type="submit"
+      value="Comment"/>
+
+  </form>
+</div>
+<% } %>
+ 
+
+
+</article>
+
     <div class="col-6 mt-5">
       <a class="btn btn-primary" href="/profile">Return to Profile</a>
       <a class="btn btn-primary" href="/feed">Return to Feed</a>
