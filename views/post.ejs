@@ -3,7 +3,7 @@
   <div class="row justify-content-center mt-5">
     <div class="col-6">
       <h2><%= post.title %></h2>
-      <img class="img-fluid" src="<%= post.image%>" />
+      <img class="img-fluid" src="<%= post.image%>"/>
       <div class="row justify-content-between">
         <form
           class="col-1"
@@ -28,17 +28,19 @@
       <p><%= post.caption %></p>
     </div>
 
-
-    <!-- Here is where the comments posted will go-->
-
-    <section>
+    <% if(post.comments.length > 0) { %>
+      post.comments.forEach(comment => {
+        
+      })
+    }
     
 
     <!-- Try to create a comment section for this! If you can figure it out, you can do it for you 100 hour project-->
     <% if (user.userName !== 'guest') {%>
     <div class="mb-3">
     <form 
-     action="/post/comments/<%= post.id %>/?_method=PUT" method="POST">
+     action="/post/addComment/<%= post.id %>/?_method=PUT" 
+     method="POST">
       <textarea 
       name="comment" 
       class="form-control" 

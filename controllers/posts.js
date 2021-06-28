@@ -1,6 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
-const Comment = require('../models/Comment');
 const User = require('../models/User')
 
 module.exports = {
@@ -54,12 +53,12 @@ module.exports = {
         await Post.findOneAndUpdate({ _id: req.params.id }, {
             $push: {
                 comments: {
-                    text: req.body.text,
-                    user: req.user
+                    comment: req.body.comment
                 }
             },
             $inc: { commentsLength: 1 }
         } )
+        console.log(req.body.comment)
         res.redirect(`/post/${req.params.id}`)
     }
     catch(err){
