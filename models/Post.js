@@ -3,6 +3,11 @@ const User = require('./User')
 
 
 const PostSchema = new mongoose.Schema({
+  binaryUserName: {
+    type: String,
+    require: true
+  },
+
   title: {
     type: String,
     required: true,
