@@ -29,17 +29,20 @@
     </div>
 
     
-    <% if(post.comments.length > 0) { %>
+    <% if(post.comments) { %>
       <section>
         <h2 id="postCommentHeader">Comments</h2>
       <div>
       <% post.comments.forEach((el, index) => { %>
+        <li data-id='<%=el._id%>'  data-user ="<%=el.userId%>" class="trackers">
         <h3><%= user.userName %></h3>
         <p><%= el.comment %></p>
+      </li>
       <% }) %>
     </div>
   </section>
     <% } %>
+
 
     <!-- Try to create a comment section for this! If you can figure it out, you can do it for you 100 hour project-->
     <% if (user.userName !== 'guest') {%>
