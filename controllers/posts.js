@@ -51,15 +51,17 @@ module.exports = {
 
   addComment: async (req, res) => {
     try{
-        await Post.findOneAndUpdate({ _id: req.params.id }, {
+        await Post.findOneAndUpdate({ _id: req.params.id}, {
             $push: {
                 comments: {
-                    comment: req.body.comment
+                    comment: req.body.comment,
+                    user: req.user.userName
                 }
             },
             $inc: { commentsLength: 1 }
         } )
         console.log(req.body.comment)
+        console.log(req.user)
         res.redirect(`/post/${req.params.id}`)
     }
     catch(err){

@@ -35,7 +35,7 @@
       <div>
       <% post.comments.forEach((el, index) => { %>
         <li data-id='<%=el._id%>'  data-user ="<%=el.userId%>" class="trackers">
-        <h3><%= user.userName %></h3>
+        <h3><%= el.user %></h3>
         <p><%= el.comment %></p>
       </li>
       <% }) %>
